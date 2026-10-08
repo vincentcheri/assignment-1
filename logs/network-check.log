@@ -32,3 +32,37 @@
 [2026-10-08 11:20:55] Checking TCP connection to 127.0.0.1 port 80
 [2026-10-08 11:20:55] TCP connection failed for 127.0.0.1 port 80
 [2026-10-08 11:20:55] Network check completed with failures
+[2026-10-08 11:24:37] Network check started
+[2026-10-08 11:24:37] Validating IPv4 address and optional port
+[2026-10-08 11:24:37] IPv4 validation failed
+[2026-10-08 11:24:37] Network check started
+[2026-10-08 11:24:37] Validating IPv4 address and optional port
+[2026-10-08 11:24:37] Port validation failed
+[2026-10-08 11:24:37] Network check started
+[2026-10-08 11:24:37] Validating IPv4 address and optional port
+[2026-10-08 11:24:37] Port validation failed
+[2026-10-08 11:24:37] Network check started
+[2026-10-08 11:24:37] Validating IPv4 address and optional port
+[2026-10-08 11:24:37] Port validation failed
+[2026-10-08 11:24:38] Network check started
+[2026-10-08 11:24:38] Validating IPv4 address and optional port
+[2026-10-08 11:24:38] Input validation succeeded
+[2026-10-08 11:24:38] Resolving 127.0.0.1
+[2026-10-08 11:24:38] Resolved 127.0.0.1 to 127.0.0.1
+[2026-10-08 11:24:38] Checking connectivity to 127.0.0.1
+[2026-10-08 11:24:38] Connectivity check failed for 127.0.0.1
+[2026-10-08 11:24:38] Displaying network interfaces
+[2026-10-08 11:24:38] Network interfaces displayed
+[2026-10-08 11:24:38] Network check completed with failures
+[2026-10-08 11:24:41] Network check started
+[2026-10-08 11:24:41] Validating IPv4 address and optional port
+[2026-10-08 11:24:41] Input validation succeeded
+[2026-10-08 11:24:41] Resolving 187.7.27.111
+[2026-10-08 11:24:41] Resolved 187.7.27.111 to 187.7.27.111
+[2026-10-08 11:24:41] Checking connectivity to 187.7.27.111
+[2026-10-08 11:24:41] Connectivity check failed for 187.7.27.111
+[2026-10-08 11:24:41] Displaying network interfaces
+[2026-10-08 11:24:41] Network interfaces displayed
+[2026-10-08 11:24:41] Checking TCP connection to 187.7.27.111 port 443
+[2026-10-08 11:24:41] TCP connection succeeded for 187.7.27.111 port 443
+[2026-10-08 11:24:41] Network check completed with failures

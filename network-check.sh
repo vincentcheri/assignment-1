@@ -15,11 +15,11 @@ log_event() {
 }
 
 log_event "Network check started" || exit 1
+log_event "Validating IPv4 address and optional port" || exit 1
 
-log_event "Validating host and optional port" || exit 1
 if (( $# < 1 || $# > 2 )) ||
     [[ ! $ip =~ ^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$ ]]; then
-    log_event "Input validation failed" || exit 1
+    log_event "IPv4 validation failed" || exit 1
     printf 'Usage: %s IPv4-address [port]\n' "$0" >&2
     exit 2
 fi
@@ -32,26 +32,22 @@ if (( $# == 2 )); then
     fi
     port=${BASH_REMATCH[1]}
 fi
-log_event "Host and optional port validated" || exit 1
+log_event "Input validation succeeded" || exit 1
 
 resolved=
-log_event "Resolving host $ip" || exit 1
+log_event "Resolving $ip" || exit 1
 read -r resolved _ < <(getent ahostsv4 "$ip")
 if [[ -z $resolved ]]; then
-    log_event "Host resolution failed for $ip" || exit 1
+    log_event "Resolution failed for $ip" || exit 1
     printf 'Unable to resolve IP address: %s\n' "$ip" >&2
     exit 1
 fi
 printf 'Resolved address: %s\n' "$resolved"
-log_event "Host resolved to $resolved" || exit 1
+log_event "Resolved $ip to $resolved" || exit 1
 
 result=0
-log_event "Checking basic connectivity to $resolved" || result=1
-if ! command -v ping >/dev/null 2>&1; then
-    printf 'Connectivity check unavailable: ping is not installed\n' >&2
-    log_event "Connectivity check unavailable because ping is not installed" || result=1
-    result=1
-elif ping -c 1 -W 2 "$resolved" >/dev/null 2>&1; then
+log_event "Checking connectivity to $resolved" || result=1
+if ping -c 1 -W 2 "$resolved" >/dev/null 2>&1; then
     printf 'Connectivity check succeeded\n'
     log_event "Connectivity check succeeded for $resolved" || result=1
 else
@@ -71,7 +67,7 @@ fi
 
 if (( $# == 2 )); then
     log_event "Checking TCP connection to $resolved port $port" || result=1
-    if (exec 3<>"/dev/tcp/$resolved/$port") 2>/dev/null; then
+    if timeout 2 bash -c ':</dev/tcp/"$1"/"$2"' _ "$resolved" "$port" 2>/dev/null; then
         printf 'TCP connection to %s:%s succeeded\n' "$resolved" "$port"
         log_event "TCP connection succeeded for $resolved port $port" || result=1
     else
