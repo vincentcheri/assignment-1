@@ -35,12 +35,15 @@ fi
 log_event "Host and optional port validated" || exit 1
 
 resolved=
+log_event "Resolving host $ip" || exit 1
 read -r resolved _ < <(getent ahostsv4 "$ip")
 if [[ -z $resolved ]]; then
+    log_event "Host resolution failed for $ip" || exit 1
     printf 'Unable to resolve IP address: %s\n' "$ip" >&2
     exit 1
 fi
 printf 'Resolved address: %s\n' "$resolved"
+log_event "Host resolved to $resolved" || exit 1
 
 result=0
 if ! command -v ping >/dev/null 2>&1; then
