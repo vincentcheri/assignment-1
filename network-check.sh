@@ -16,19 +16,23 @@ log_event() {
 
 log_event "Network check started" || exit 1
 
+log_event "Validating host and optional port" || exit 1
 if (( $# < 1 || $# > 2 )) ||
     [[ ! $ip =~ ^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$ ]]; then
+    log_event "Input validation failed" || exit 1
     printf 'Usage: %s IPv4-address [port]\n' "$0" >&2
     exit 2
 fi
 
 if (( $# == 2 )); then
     if [[ ! $port =~ ^0*([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$ ]]; then
+        log_event "Port validation failed" || exit 1
         printf 'Invalid port: %s (valid range: 1-65535)\n' "$port" >&2
         exit 2
     fi
     port=${BASH_REMATCH[1]}
 fi
+log_event "Host and optional port validated" || exit 1
 
 resolved=
 read -r resolved _ < <(getent ahostsv4 "$ip")
