@@ -70,12 +70,21 @@ else
 fi
 
 if (( $# == 2 )); then
-    if timeout 2 bash -c ':</dev/tcp/"$1"/"$2"' _ "$resolved" "$port" 2>/dev/null; then
+    log_event "Checking TCP connection to $resolved port $port" || result=1
+    if (exec 3<>"/dev/tcp/$resolved/$port") 2>/dev/null; then
         printf 'TCP connection to %s:%s succeeded\n' "$resolved" "$port"
+        log_event "TCP connection succeeded for $resolved port $port" || result=1
     else
         printf 'TCP connection to %s:%s failed\n' "$resolved" "$port"
+        log_event "TCP connection failed for $resolved port $port" || result=1
         result=1
     fi
+fi
+
+if (( result == 0 )); then
+    log_event "Network check completed successfully" || result=1
+else
+    log_event "Network check completed with failures" || result=1
 fi
 
 exit "$result"

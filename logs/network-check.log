@@ -1,0 +1,34 @@
+[2026-10-08 11:20:48] Network check started
+[2026-10-08 11:20:48] Validating host and optional port
+[2026-10-08 11:20:48] Host and optional port validated
+[2026-10-08 11:20:48] Resolving host 127.0.0.1
+[2026-10-08 11:20:48] Host resolved to 127.0.0.1
+[2026-10-08 11:20:48] Checking basic connectivity to 127.0.0.1
+[2026-10-08 11:20:48] Connectivity check unavailable because ping is not installed
+[2026-10-08 11:20:48] Displaying network interfaces
+[2026-10-08 11:20:48] Network interfaces displayed
+[2026-10-08 11:20:48] Network check completed with failures
+[2026-10-08 11:20:55] Network check started
+[2026-10-08 11:20:55] Validating host and optional port
+[2026-10-08 11:20:55] Input validation failed
+[2026-10-08 11:20:55] Network check started
+[2026-10-08 11:20:55] Validating host and optional port
+[2026-10-08 11:20:55] Port validation failed
+[2026-10-08 11:20:55] Network check started
+[2026-10-08 11:20:55] Validating host and optional port
+[2026-10-08 11:20:55] Port validation failed
+[2026-10-08 11:20:55] Network check started
+[2026-10-08 11:20:55] Validating host and optional port
+[2026-10-08 11:20:55] Port validation failed
+[2026-10-08 11:20:55] Network check started
+[2026-10-08 11:20:55] Validating host and optional port
+[2026-10-08 11:20:55] Host and optional port validated
+[2026-10-08 11:20:55] Resolving host 127.0.0.1
+[2026-10-08 11:20:55] Host resolved to 127.0.0.1
+[2026-10-08 11:20:55] Checking basic connectivity to 127.0.0.1
+[2026-10-08 11:20:55] Connectivity check unavailable because ping is not installed
+[2026-10-08 11:20:55] Displaying network interfaces
+[2026-10-08 11:20:55] Network interfaces displayed
+[2026-10-08 11:20:55] Checking TCP connection to 127.0.0.1 port 80
+[2026-10-08 11:20:55] TCP connection failed for 127.0.0.1 port 80
+[2026-10-08 11:20:55] Network check completed with failures
