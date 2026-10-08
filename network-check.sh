@@ -1,11 +1,12 @@
 #!/bin/bash
 
-ip=$1
+host=$1
 port=$2
 
 if (( $# < 1 || $# > 2 )) ||
-    [[ ! $ip =~ ^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$ ]]; then
-    printf 'Usage: %s IPv4-address [port]\n' "$0" >&2
+    [[ ! $host =~ ^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$ &&
+        ! $host =~ ^([[:alnum:]]([[:alnum:]-]{0,61}[[:alnum:]])?)(\.([[:alnum:]]([[:alnum:]-]{0,61}[[:alnum:]])?))*\.?$ ]]; then
+    printf 'Usage: %s host-or-IPv4-address [port]\n' "$0" >&2
     exit 2
 fi
 
@@ -18,9 +19,9 @@ if (( $# == 2 )); then
 fi
 
 resolved=
-read -r resolved _ < <(getent ahostsv4 "$ip")
+read -r resolved _ < <(getent ahostsv4 "$host")
 if [[ -z $resolved ]]; then
-    printf 'Unable to resolve IP address: %s\n' "$ip" >&2
+    printf 'Unable to resolve host: %s\n' "$host" >&2
     exit 1
 fi
 printf 'Resolved address: %s\n' "$resolved"
