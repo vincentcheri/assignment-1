@@ -46,18 +46,28 @@ printf 'Resolved address: %s\n' "$resolved"
 log_event "Host resolved to $resolved" || exit 1
 
 result=0
+log_event "Checking basic connectivity to $resolved" || result=1
 if ! command -v ping >/dev/null 2>&1; then
     printf 'Connectivity check unavailable: ping is not installed\n' >&2
+    log_event "Connectivity check unavailable because ping is not installed" || result=1
     result=1
 elif ping -c 1 -W 2 "$resolved" >/dev/null 2>&1; then
     printf 'Connectivity check succeeded\n'
+    log_event "Connectivity check succeeded for $resolved" || result=1
 else
     printf 'Connectivity check failed\n'
+    log_event "Connectivity check failed for $resolved" || result=1
     result=1
 fi
 
 printf 'Network interfaces:\n'
-ip address show || result=1
+log_event "Displaying network interfaces" || result=1
+if ip address show; then
+    log_event "Network interfaces displayed" || result=1
+else
+    log_event "Failed to display network interfaces" || result=1
+    result=1
+fi
 
 if (( $# == 2 )); then
     if timeout 2 bash -c ':</dev/tcp/"$1"/"$2"' _ "$resolved" "$port" 2>/dev/null; then
