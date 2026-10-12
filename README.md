@@ -2,7 +2,7 @@
 
 A small collection of Bash scripts for inspecting a Linux system, checking
 filesystem usage, and testing basic network connectivity. This repository is
-the deliverable for **Assignment 1 — Linux, Bash & Networking**.
+the deliverable for **Assignment-1 — Linux, Bash & Networking**.
 
 ## Requirements
 
