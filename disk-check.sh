@@ -1,5 +1,7 @@
 #!/bin/env sh
 
+# or #!/bin/env bash
+
 threshold=${1:-100}
 path=${2:-/}
 
