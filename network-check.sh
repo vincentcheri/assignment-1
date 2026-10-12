@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# or #!/bin/env bash
+
 host=$1
 port=$2
 
