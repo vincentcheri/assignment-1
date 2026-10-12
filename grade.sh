@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# or #!/bin/env bash
+
 set -u
 PASS=0
 FAIL=0
