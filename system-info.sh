@@ -1,5 +1,7 @@
 #!/bin/env sh
 
+# or #!/bin/env bash
+
 echo "Hostname: $(hostname)"
 echo "Current User: $(whoami)"
 echo "Date: $(date)"
